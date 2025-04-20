@@ -8,10 +8,6 @@ spring:
       jdbc-url: 'jdbc:h2:tcp://localhost/~/testdb'
       username: sa
       password: password
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
   jpa:
     hibernate:
       ddl-auto: create
@@ -19,3 +15,6 @@ spring:
       hibernate:
         show-sql: true
         format_sql: true
+
+jwt:
+  secret-key: "rYfed5F12iViHmbB7ZufrxIR6MNLG67+4+b6+DhqcRJuFVe7/KxhIb4necxKaCDN"
