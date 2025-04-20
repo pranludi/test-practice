@@ -1,5 +1,6 @@
 package io.pranludi.testpractice.member;
 
+import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,11 @@ public class MemberController {
     @GetMapping("/{id}")
     public ResponseEntity<Member> findById(@PathVariable String id) {
         return ResponseEntity.ok(service.find(id));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Member>> findAll() {
+        return ResponseEntity.ok(service.findAll());
     }
 
 }

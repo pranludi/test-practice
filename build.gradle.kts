@@ -23,6 +23,9 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-security")
   runtimeOnly("com.h2database:h2")
   implementation("com.google.code.gson:gson:2.13.0")
+  // json
+  implementation("com.fasterxml.jackson.core:jackson-databind:2.18.3")
+  implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.3")
   // jwt
   implementation("io.jsonwebtoken:jjwt-api:0.12.6")
   runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.6")

@@ -39,9 +39,9 @@ public class AuthController {
     }
 
     @PostMapping("/add")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody Member member) {
-        service.save(member);
+    public ResponseEntity<Member> save(@RequestBody Member member) {
+        Member saved = service.save(member);
+        return ResponseEntity.ok(saved);
     }
 
 }
