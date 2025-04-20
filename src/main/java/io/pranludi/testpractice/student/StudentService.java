@@ -1,4 +1,4 @@
-package io.pranludi.testpractice;
+package io.pranludi.testpractice.student;
 
 import java.util.List;
 import org.springframework.stereotype.Service;

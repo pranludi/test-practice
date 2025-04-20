@@ -1,4 +1,4 @@
-package io.pranludi.testpractice;
+package io.pranludi.testpractice.student;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

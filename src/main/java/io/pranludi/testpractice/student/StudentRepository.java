@@ -1,4 +1,4 @@
-package io.pranludi.testpractice;
+package io.pranludi.testpractice.student;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

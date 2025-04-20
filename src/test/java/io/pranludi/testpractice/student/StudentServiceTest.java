@@ -1,4 +1,4 @@
-package io.pranludi.testpractice;
+package io.pranludi.testpractice.student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
