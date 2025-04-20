@@ -20,12 +20,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
         Member member = memberService.find(username);
-        return createUserDetails(member);
-    }
-
-    private UserDetails createUserDetails(Member member) {
         return new User(
-            member.getEmail(),
+            member.getId(),
             "password",
             Set.of(new SimpleGrantedAuthority("ROLE_USER")),
             true
