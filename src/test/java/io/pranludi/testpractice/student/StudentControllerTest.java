@@ -1,5 +1,6 @@
-package io.pranludi.testpractice;
+package io.pranludi.testpractice.student;
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -8,24 +9,51 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.google.gson.Gson;
+import io.pranludi.testpractice.config.TestSecurityConfig;
+import io.pranludi.testpractice.config.security.common.JwtUtil;
+import io.pranludi.testpractice.config.security.filter.JwtAuthenticationFilter;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
+@Import(TestSecurityConfig.class)
+@WebAppConfiguration
 @WebMvcTest(StudentController.class)
 class StudentControllerTest {
 
     @Autowired
+    private Gson gson;
+
+    @Autowired
+    private WebApplicationContext context;
+
     MockMvc mvc;
 
     @MockitoBean
     StudentService studentService;
+    @MockitoBean
+    JwtUtil jwtUtil;
+    @MockitoBean
+    JwtAuthenticationFilter jwtAuthenticationFilter;
+    @MockitoBean
+    JpaMetamodelMappingContext jpaMetamodelMappingContext;
 
-    @Autowired
-    private Gson gson;
+    @BeforeEach
+    public void setup() {
+        mvc = MockMvcBuilders
+            .webAppContextSetup(context)
+            .apply(springSecurity())
+            .build();
+    }
 
     @Test
     void hello_단순_GET_Method_Controller_테스트() throws Exception {

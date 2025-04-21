@@ -1,4 +1,4 @@
-package io.pranludi.testpractice;
+package io.pranludi.testpractice.student;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,12 +17,13 @@ class StudentRepositoryTest {
     @Transactional
     void save() {
         // given
-        Student student = new Student(0, "test name", "test email");
+        Student student = new Student(null, "test name", "test email");
 
         // when
         Student saved = studentRepository.save(student);
+        var findSavedId = studentRepository.findById(saved.getId()).get().getId();
 
         // then
-        assertEquals(saved.getId(), student.getId());
+        assertEquals(1, findSavedId);
     }
 }
